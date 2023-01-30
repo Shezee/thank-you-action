@@ -1,0 +1,15 @@
+{
+  "name": "thank-you-action",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "build": "ncc build src/action.js -o dist"
+  },
+  "repository": "git@github.com:Shezee/thank-you-action.git",
+  "author": "Shazeen Mahmood",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "@vercel/ncc": "^0.36.1"
+  }
+}
