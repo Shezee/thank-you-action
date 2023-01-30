@@ -9772,38 +9772,24 @@ module.exports = JSON.parse('[[[0,44],"disallowed_STD3_valid"],[[45,46],"valid"]
 var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
 (() => {
-const fetch = __nccwpck_require__(467);
 const core = __nccwpck_require__(2186);
 const github = __nccwpck_require__(5438);
+const { context } = __nccwpck_require__(5438);
+const GITHUB_TOKEN = core.getInput('GITHUB_TOKEN');
+const octokit = github.getOctokit(GITHUB_TOKEN);
+
+const { pull_request } = context.payload;
 
 async function run() {
-
-  const GITHUB_TOKEN = core.getInput('GITHUB_TOKEN');
-
-  if ( typeof GITHUB_TOKEN !== 'string' ) {
-    throw new Error('Invalid GITHUB_TOKEN: did you forget to set it in your action config?');
-  }
-
-  const { context = {} } = github;
-  const { pull_request } = context.payload;
-
-  if ( !pull_request ) {
-    throw new Error('Could not find pull request!')
-  };
-
-  console.log(`Found pull request: ${pull_request.number}`);
-  console.log(`GITHUB token ${GITHUB_TOKEN}`);
-
-  const octokit = github.getOctokit(GITHUB_TOKEN)
-
-  await octokit.issues.createComment({
-    ...context.repo,
-    issue_number: pull_request.number,
-    body: 'Thank you for this!'
-  });
+await octokit.rest.issues.createComment({
+	...context.repo,
+	issue_number: pull_request.number,
+	body: 'Thank you for submitting a pull request! We will try to review this as soon as we can.'
+});
 }
 
-run().catch(e => core.setFailed(e.message));
+run();
+
 })();
 
 module.exports = __webpack_exports__;
