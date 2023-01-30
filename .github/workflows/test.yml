@@ -5,7 +5,7 @@ on:
     types: [opened]
 
 jobs:
-  test:
+  thank-you:
     permissions: write-all
     runs-on: ubuntu-latest
     steps:
