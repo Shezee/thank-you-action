@@ -1,6 +1,6 @@
-name: 'Thank You Action'
+name: 'PR Thank You Action'
 description: 'Say "Thank You" to new pull requests'
-author: '[Your Name]'
+author: 'Shazeen Mahmood'
 
 inputs:
   GITHUB_TOKEN:
