@@ -3,6 +3,7 @@ const core = require('@actions/core');
 const github = require('@actions/github');
 
 async function run() {
+
   const GITHUB_TOKEN = core.getInput('GITHUB_TOKEN');
 
   if ( typeof GITHUB_TOKEN !== 'string' ) {
@@ -17,6 +18,7 @@ async function run() {
   };
 
   console.log(`Found pull request: ${pull_request.number}`);
+  console.log(`GITHUB token ${GITHUB_TOKEN}`);
 
   const octokit = github.getOctokit(GITHUB_TOKEN)
 
