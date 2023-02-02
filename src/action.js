@@ -1,4 +1,4 @@
-const fetch = require('node-fetch');
+const fetch = require('node-fetch@2.6.1');
 const core = require('@actions/core');
 const github = require('@actions/github');
 const randomPos = Math.round(Math.random() * 1000);
