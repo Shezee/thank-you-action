@@ -12,9 +12,9 @@ async function run() {
   const { pull_request } = context.payload;
 
   const url = `https://api.tenor.com/v1/search?q=thank%20you&pos=${randomPos}&limit=1&media_filter=minimal&contentfilter=high&key=${TENOR_TOKEN}`;
-  const response = await fetch(url);
+  const {response} = await fetch(url);
   console.log('res ' + response)
-  const { results } = await response.json();
+  const {results} = await response.json();
   console.log('result ' + results)
   const gifUrl = results[0].media[0].tinygif.url;
 
