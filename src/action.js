@@ -16,8 +16,8 @@ async function run() {
   console.log('res ' + response)
   const { results } = await response.json();
   console.log('result ' + results)
-  console.log('result ' + results[0].media_formats[0])
-  const gifUrl = results.media_formats[0].tinygif.url;
+  console.log('result ' + results[0].media_formats)
+  const gifUrl = results[0].media_formats.tinygif.url;
 
   console.log('Thank you for creating this PR!');
 
