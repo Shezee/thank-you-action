@@ -1,7 +1,6 @@
 const fetch = require('node-fetch');
 const core = require('@actions/core');
 const github = require('@actions/github');
-const randomPos = Math.round(Math.random() * 1000);
 
 async function run() {
   const TENOR_TOKEN = core.getInput('TENOR_TOKEN');
@@ -11,13 +10,10 @@ async function run() {
 
   const { pull_request } = context.payload;
 
-  const url = `https://tenor.googleapis.com/v2/search?q=thank%20you&pos=${randomPos}&limit=1&media_filter=minimal&contentfilter=high&key=${TENOR_TOKEN}`
+  const url = `https://tenor.googleapis.com/v2/search?q=thank%20you&limit=50&media_filter=minimal&contentfilter=high&key=${TENOR_TOKEN}`
   const response = await fetch(url);
-  console.log('res ' + response)
   const { results } = await response.json();
-  console.log('result ' + results)
-  console.log('result ' + results[0].media_formats)
-  const gifUrl = results[0].media_formats.tinygif.url;
+  const gifUrl = results[Math.floor(Math.random()*results.length)].media_formats.tinygif.url;
 
   console.log('Thank you for creating this PR!');
 
